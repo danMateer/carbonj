@@ -148,3 +148,4 @@ public class OperatingSystemGaugeSet implements MetricSet
         return Double.NaN;
     }
 }
+
