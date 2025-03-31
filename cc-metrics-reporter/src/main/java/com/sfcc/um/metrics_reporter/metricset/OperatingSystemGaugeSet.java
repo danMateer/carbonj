@@ -124,4 +124,27 @@ public class OperatingSystemGaugeSet implements MetricSet
         }
         return 0.0;
     }
+
+    private double invokeRatio( Optional<Method> numeratorMethod,
+                                Optional<Method> denominatorMethod )
+    {
+        if ( numeratorMethod.isPresent() && denominatorMethod.isPresent() )
+        {
+            try
+            {
+                long numerator = ( long ) numeratorMethod.get().invoke( mxBean );
+                long denominator = ( long ) denominatorMethod.get().invoke( mxBean );
+                if ( 0 ==  denominator )
+                {
+                    return Double.NaN;
+                }
+                return 1.0 * numerator / denominator;
+            }
+            catch ( IllegalAccessException | InvocationTargetException ite )
+            {
+                return Double.NaN;
+            }
+        }
+        return Double.NaN;
+    }
 }
