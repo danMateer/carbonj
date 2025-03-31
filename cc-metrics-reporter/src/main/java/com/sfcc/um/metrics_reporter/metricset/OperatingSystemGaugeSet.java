@@ -125,7 +125,7 @@ public class OperatingSystemGaugeSet implements MetricSet
         return 0.0;
     }
 
-    private double invokeRatio( Optional<Method> numeratorMethod,
+    public double invokeRatio( Optional<Method> numeratorMethod,
                                 Optional<Method> denominatorMethod )
     {
         if ( numeratorMethod.isPresent() && denominatorMethod.isPresent() )
