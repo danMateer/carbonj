@@ -135,8 +135,8 @@ public class OperatingSystemGaugeSet implements MetricSet
                 numMethod.setAccessible(true);
                 denomMethod.setAccessible(true);
 
-                long numerator = (long) numMethod.invoke(mxBean);
-                long denominator = (long) denomMethod.invoke(mxBean);
+                long numerator = (long) numeratorMethod.get().setAccessible(true);
+                long denominator = (long) numeratorMethod.get().invoke(mxBean);
 
                 if (denominator == 0) {
                     return Double.NaN;
